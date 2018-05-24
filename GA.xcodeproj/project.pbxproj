@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		6477B4D020B29664008F817D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6477B4CF20B29664008F817D /* AppDelegate.swift */; };
-		6477B4D220B29664008F817D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6477B4D120B29664008F817D /* ViewController.swift */; };
+		6477B4D220B29664008F817D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6477B4D120B29664008F817D /* MainViewController.swift */; };
 		6477B4D520B29664008F817D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6477B4D320B29664008F817D /* Main.storyboard */; };
 		6477B4D720B29664008F817D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6477B4D620B29664008F817D /* Assets.xcassets */; };
 		6477B4DA20B29664008F817D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6477B4D820B29664008F817D /* LaunchScreen.storyboard */; };
+		6477B4E220B297DE008F817D /* Chromosome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6477B4E120B297DE008F817D /* Chromosome.swift */; };
+		6477B4E420B29C42008F817D /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6477B4E320B29C42008F817D /* Function.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6477B4CC20B29664008F817D /* GA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6477B4CF20B29664008F817D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6477B4D120B29664008F817D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6477B4D120B29664008F817D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6477B4D420B29664008F817D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6477B4D620B29664008F817D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6477B4D920B29664008F817D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6477B4DB20B29664008F817D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6477B4E120B297DE008F817D /* Chromosome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chromosome.swift; sourceTree = "<group>"; };
+		6477B4E320B29C42008F817D /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				6477B4CF20B29664008F817D /* AppDelegate.swift */,
-				6477B4D120B29664008F817D /* ViewController.swift */,
+				6477B4D120B29664008F817D /* MainViewController.swift */,
 				6477B4D320B29664008F817D /* Main.storyboard */,
 				6477B4D620B29664008F817D /* Assets.xcassets */,
 				6477B4D820B29664008F817D /* LaunchScreen.storyboard */,
 				6477B4DB20B29664008F817D /* Info.plist */,
+				6477B4E120B297DE008F817D /* Chromosome.swift */,
+				6477B4E320B29C42008F817D /* Function.swift */,
 			);
 			path = GA;
 			sourceTree = "<group>";
@@ -136,8 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6477B4D220B29664008F817D /* ViewController.swift in Sources */,
+				6477B4D220B29664008F817D /* MainViewController.swift in Sources */,
+				6477B4E220B297DE008F817D /* Chromosome.swift in Sources */,
 				6477B4D020B29664008F817D /* AppDelegate.swift in Sources */,
+				6477B4E420B29C42008F817D /* Function.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
