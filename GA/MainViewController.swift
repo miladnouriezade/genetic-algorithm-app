@@ -13,10 +13,13 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var sizeField: UITextField!
     @IBOutlet weak var populationField: UITextField!
+    @IBOutlet weak var TournomentSizeField: UITextField!
     
+    var populationArray:[Chromosome] = []
     var nQueen = 0
     var populationCount = 0
-    var populationArray:[Chromosome] = []
+    var tournomentSize = 0
+    
 
     
     
@@ -27,12 +30,16 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func saveCliked(_ sender: Any) {
-        if let size = sizeField.text, let population = populationField.text{
+        if let size = sizeField.text, let population = populationField.text, let percent = TournomentSizeField.text{
             nQueen = Int(size)!
             populationCount = Int(population)!
+            tournomentSize = Int(percent)!
+            
             createPopulation(count: populationCount, size:nQueen , population: &populationArray)
             calcFitness(for: &populationArray,with:nQueen)
-            print(populationArray)
+//            print(populationArray)
+            let tournomentSelected = tournomentSel(from: populationArray, with:Float(tournomentSize))
+            print("***\(tournomentSelected)")
         }
     }
 }

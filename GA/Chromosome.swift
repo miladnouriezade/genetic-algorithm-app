@@ -9,8 +9,10 @@
 import Foundation
 
 struct Chromosome{
-    var genes:[Int]
+    var genes = [Int]()
     var fitness:Int = 0
+    
+    init() {}
     
     init(with number:Int) {
         genes = Array(repeating: 0, count: number)

@@ -47,6 +47,27 @@ func calcFitness(for generation:inout [Chromosome],with queenNum:Int){
     print(totalFitness / generation.count)
 
 }
+func tournomentSel(from generation:[Chromosome], with percent:Float)-> [Chromosome]{
+    let count = percent/100 * Float(generation.count)
+    var randomChromosomes = [Chromosome]()
+    var selectedChromosome = [Chromosome]()
+    var sample = Chromosome()
+    randomChromosomes = Array(repeating: sample, count:Int(count))
+   
+    for i in 0 ..< Int(count){
+        let randomSel = Int(arc4random_uniform(UInt32(generation.count)))
+        sample.genes = generation[randomSel].genes
+        sample.fitness = generation[randomSel].fitness
+        randomChromosomes[i] = sample
+    }
+    randomChromosomes.sort(by: {$0.fitness > $1.fitness})
+    selectedChromosome.append(randomChromosomes[0])
+    selectedChromosome.append(randomChromosomes[1])
+    return selectedChromosome
+}
+
+    
+
 
     
 
