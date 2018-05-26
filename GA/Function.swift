@@ -43,8 +43,8 @@ func calcFitness(for generation:inout [Chromosome],with queenNum:Int){
         generation[k].fitness = (maxFitness - clashes)
         totalFitness += generation[k].fitness
     }
-    print("Average Fitness is = ")
-    print(totalFitness / generation.count)
+//    print("Average Fitness is = ")
+//    print(totalFitness / generation.count)
 
 }
 func tournomentSel(from generation:[Chromosome], with percent:Float)-> [Chromosome]{
@@ -66,8 +66,21 @@ func tournomentSel(from generation:[Chromosome], with percent:Float)-> [Chromoso
     return selectedChromosome
 }
 
+func singleCrossover(for chromosomes:inout [Chromosome])->[Chromosome]{
+//    let randomPoint = Int(arc4random_uniform(UInt32(chromosomes[1].genes.count)))
     
-
+    for i in 1 ..< chromosomes[1].genes.count{
+        
+        let temp = chromosomes[0].genes[i]
+        
+        chromosomes[0].genes[i] = chromosomes[1].genes[i]
+        
+        chromosomes[1].genes[i] = temp
+        
+    }
+    
+    return chromosomes
+    
+}
 
     
-

@@ -14,11 +14,14 @@ class MainViewController: UIViewController {
     @IBOutlet weak var sizeField: UITextField!
     @IBOutlet weak var populationField: UITextField!
     @IBOutlet weak var TournomentSizeField: UITextField!
+    @IBOutlet weak var crossoverField: UITextField!
     
     var populationArray:[Chromosome] = []
+    var selectedChromosomes:[Chromosome] = []
     var nQueen = 0
     var populationCount = 0
     var tournomentSize = 0
+    var crossoverRate = 0
     
 
     
@@ -30,18 +33,39 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func saveCliked(_ sender: Any) {
-        if let size = sizeField.text, let population = populationField.text, let percent = TournomentSizeField.text{
+        if let size = sizeField.text, let population = populationField.text,
+            let percent = TournomentSizeField.text,let crossover = crossoverField.text{
             nQueen = Int(size)!
             populationCount = Int(population)!
             tournomentSize = Int(percent)!
+            crossoverRate = Int(crossover)!
             
             createPopulation(count: populationCount, size:nQueen , population: &populationArray)
             calcFitness(for: &populationArray,with:nQueen)
-//            print(populationArray)
-            let tournomentSelected = tournomentSel(from: populationArray, with:Float(tournomentSize))
-            print("***\(tournomentSelected)")
+            selectedChromosomes = tournomentSel(from: populationArray, with:Float(tournomentSize))
+            print("***Parent:\(selectedChromosomes)\n")
+            willCrossover(rate:crossoverRate)
+            print("CROSOVERED:\(selectedChromosomes)\n")
+            
+            
         }
     }
+    func willCrossover(rate:Int)->Bool{
+        
+        //let random = arc4random_uniform(UInt32(100))
+        
+        if 1 == rate{
+            selectedChromosomes = singleCrossover(for:&selectedChromosomes)
+            calcFitness(for: &selectedChromosomes, with: nQueen)
+            return true
+            
+        }else{
+            return false
+        }
+    }
+    
+    
+    
 }
 
 
