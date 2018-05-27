@@ -22,8 +22,8 @@ func createPopulation(count:Int, size:Int, population:inout [Chromosome]){
 }
 
 func calcFitness(for generation:inout [Chromosome],with queenNum:Int){
+    var totalFotness = 0
     let maxFitness = ((queenNum - 1)*(queenNum)) / 2
-    var totalFitness = 0
     var clashes = 0
     
     for k in 0 ..< generation.count{
@@ -41,14 +41,26 @@ func calcFitness(for generation:inout [Chromosome],with queenNum:Int){
             }
         }
         generation[k].fitness = (maxFitness - clashes)
-        totalFitness += generation[k].fitness
+        totalFotness += generation[k].fitness
     }
-//    print("Average Fitness is = ")
-//    print(totalFitness / generation.count)
-
+//  print(totalFotness / generation.count)
+    
 }
-func tournomentSel(from generation:[Chromosome], with percent:Float)-> [Chromosome]{
-    let count = percent/100 * Float(generation.count)
+func fitnessAvg(generation:[Chromosome])->Int{
+    var totalFitness = 0
+    for i in 0 ..< generation.count{
+        let fitness = generation[i].fitness
+        totalFitness += fitness
+    }
+    return totalFitness/(generation.count)
+    
+}
+func bestChromosome(generation:inout [Chromosome])->Chromosome{
+    generation.sort(by: {$0.fitness > $1.fitness})
+    return generation[0]
+}
+func tournomentSel(from generation:[Chromosome], with percent:Double)-> [Chromosome]{
+    let count = percent/100 * Double(generation.count)
     var randomChromosomes = [Chromosome]()
     var selectedChromosome = [Chromosome]()
     var sample = Chromosome()
@@ -82,5 +94,20 @@ func singleCrossover(for chromosomes:inout [Chromosome])->[Chromosome]{
     return chromosomes
     
 }
+
+func mutation(for chromosomes:inout [Chromosome])->[Chromosome]{
+    let genes = chromosomes[0].genes
+    
+    for i in 0 ..< chromosomes.count{
+    
+    let randomGene = Int(arc4random_uniform(UInt32(genes.count)))
+    let mutatedGene = Int(arc4random_uniform(UInt32(genes.count)))
+        
+    chromosomes[i].genes[randomGene] = mutatedGene
+    }
+    return chromosomes
+
+}
+
 
     
