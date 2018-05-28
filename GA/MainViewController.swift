@@ -9,6 +9,7 @@
 import UIKit
 
 
+
 class MainViewController: UIViewController {
 
     @IBOutlet weak var sizeField: UITextField!
@@ -17,6 +18,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var crossoverField: UITextField!
     @IBOutlet weak var mutationField: UITextField!
     @IBOutlet weak var genCountField: UITextField!
+    @IBOutlet weak var bestAnsLabel: UILabel!
+    
     
     var previousGen:[Chromosome] = []
     var selectedChromosomes:[Chromosome] = []
@@ -61,6 +64,7 @@ class MainViewController: UIViewController {
 //            print("previousGen:\(previousGen)")
             print("FitnessAVG:\(fitnessAvgArray)\n")
             print("BestChromosomes:\(bestChromosomes)\n")
+            bestAnsLabel.text = String(format: "%@, %@", String(describing: bestChromosomes.last!.genes), String(bestChromosomes.last!.fitness))
             
             
         }
