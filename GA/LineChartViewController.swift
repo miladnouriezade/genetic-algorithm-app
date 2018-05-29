@@ -10,27 +10,40 @@ import UIKit
 import Charts
 
 class LineChartViewController: UIViewController {
-
+    @IBOutlet weak var lineChart: LineChartView!
+    var fitnessArray : [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(fitnessArray)
+        updateChart()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func updateChart(){
+        var lineChartEnty = [ChartDataEntry]()
+        for i in 0..<fitnessArray.count{
+            let value = ChartDataEntry(x: Double(i), y: Double(fitnessArray[i]))
+            lineChartEnty.append(value)
+            
+        }
+        let line = LineChartDataSet(values:lineChartEnty , label: "FitnessAVG")
+        line.colors = [NSUIColor.red]
+        line.circleRadius = CGFloat(5)
+        line.circleColors = [NSUIColor.black]
+        line.circleHoleRadius = CGFloat(0)
+        
+        
+        let data = LineChartData()
+        data.addDataSet(line)
+        
+        lineChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInSine)
+        lineChart.data = data
+        
+    }
+   
+    @IBAction func closePressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

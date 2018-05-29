@@ -69,6 +69,16 @@ class MainViewController: UIViewController {
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowChart"{
+            let lineChartViewController = segue.destination as! LineChartViewController
+            lineChartViewController.fitnessArray = fitnessAvgArray
+        }
+    }
+    
+    
+    
     func willCrossover(rate:Int){
         //let random = arc4random_uniform(UInt32(100))
         
