@@ -9,16 +9,15 @@
 import UIKit
 import Charts
 
-class LineChartViewController: UIViewController {
+class AverageFitnessViewController: UIViewController {
     @IBOutlet weak var lineChart: LineChartView!
     var fitnessArray : [Int] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(fitnessArray)
         updateChart()
 
-        // Do any additional setup after loading the view.
     }
     func updateChart(){
         var lineChartEnty = [ChartDataEntry]()
@@ -29,7 +28,7 @@ class LineChartViewController: UIViewController {
         }
         let line = LineChartDataSet(values:lineChartEnty , label: "FitnessAVG")
         line.colors = [NSUIColor.red]
-        line.circleRadius = CGFloat(5)
+        line.circleRadius = CGFloat(3)
         line.circleColors = [NSUIColor.black]
         line.circleHoleRadius = CGFloat(0)
         
@@ -41,6 +40,7 @@ class LineChartViewController: UIViewController {
         lineChart.data = data
         
     }
+    
    
     @IBAction func closePressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)

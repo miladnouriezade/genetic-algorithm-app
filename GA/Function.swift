@@ -13,13 +13,14 @@ func random(for input:Int)-> Int{
     
     return Int(randomNum)
 }
-
+//Create first population
 func createPopulation(count:Int, size:Int, population:inout [Chromosome]){
     for _ in 0..<count{
         let sample = Chromosome(with:size)
         population.append(sample)
     }
 }
+
 
 func calcFitness(for generation:inout [Chromosome],with queenNum:Int){
     var totalFotness = 0
@@ -43,9 +44,11 @@ func calcFitness(for generation:inout [Chromosome],with queenNum:Int){
         generation[k].fitness = (maxFitness - clashes)
         totalFotness += generation[k].fitness
     }
-//  print(totalFotness / generation.count)
+    generation.sort(by: {$0.fitness > $1.fitness})
     
 }
+
+
 func fitnessAvg(generation:[Chromosome])->Int{
     var totalFitness = 0
     for i in 0 ..< generation.count{
@@ -59,6 +62,21 @@ func bestChromosome(generation:inout [Chromosome])->Chromosome{
     generation.sort(by: {$0.fitness > $1.fitness})
     return generation[0]
 }
+
+//Elitism in GA: transfer a specific percents of best chromosomes of generation directly to new generation
+func enableElitism(from generation:[Chromosome], to newGen:inout [Chromosome], with percent:Double, newGenCount:inout Int){
+    let count = percent/100 * Double(generation.count)
+    for i in 0..<Int(count){
+        var sample = Chromosome()
+        sample.fitness = generation[i].fitness
+        sample.genes = generation[i].genes
+        
+        newGen.append(sample)
+        newGenCount += 1
+    }
+}
+
+//TournomentSelect: select 2 best parent from percents of chromosomes
 func tournomentSel(from generation:[Chromosome], with percent:Double)-> [Chromosome]{
     let count = percent/100 * Double(generation.count)
     var randomChromosomes = [Chromosome]()
@@ -77,11 +95,11 @@ func tournomentSel(from generation:[Chromosome], with percent:Double)-> [Chromos
     selectedChromosome.append(randomChromosomes[1])
     return selectedChromosome
 }
-
+//SingleCrossover: select randomPoint in genes of parent and swap every gene from randomPoint in two parent
 func singleCrossover(for chromosomes:inout [Chromosome])->[Chromosome]{
-//    let randomPoint = Int(arc4random_uniform(UInt32(chromosomes[1].genes.count)))
+  let randomPoint = Int(arc4random_uniform(UInt32(chromosomes[1].genes.count)))
     
-    for i in 1 ..< chromosomes[1].genes.count{
+    for i in randomPoint ..< chromosomes[1].genes.count{
         
         let temp = chromosomes[0].genes[i]
         
@@ -95,6 +113,7 @@ func singleCrossover(for chromosomes:inout [Chromosome])->[Chromosome]{
     
 }
 
+//Mutation:select randomGene in every parent and set random num to it
 func mutation(for chromosomes:inout [Chromosome])->[Chromosome]{
     let genes = chromosomes[0].genes
     
